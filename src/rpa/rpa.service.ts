@@ -13,11 +13,11 @@ export class RpaService {
   ) {}
 
   async create(createRpaDto: CreateRpaDto) {
-    const res = this.rpaRepository.create({
+    const res = this.rpaRepository.save({
       flowname: createRpaDto.flowname,
       business: createRpaDto.business,
       date: new Date(),
     });
-    return { message: 'success' };
+    return res;
   }
 }
