@@ -1,18 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRpaDto } from './dto/create-rpa.dto';
 import { UpdateRpaDto } from './dto/update-rpa.dto';
+import { Rpa } from './entities/rpa.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RpaService {
-  create(createRpaDto: CreateRpaDto) {
-    return 'This action adds a new rpa';
-  }
+  constructor(
+    @InjectRepository(Rpa)
+    private rpaRepository: Repository<Rpa>,
+  ) {}
 
-  findAll() {
-    return `This action returns all rpa`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} rpa`;
+  async create(createRpaDto: CreateRpaDto) {
+    const res = this.rpaRepository.create({
+      flowname: createRpaDto.flowname,
+      business: createRpaDto.business,
+      date: new Date(),
+    });
+    return { message: 'success' };
   }
 }

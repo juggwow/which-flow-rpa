@@ -1,1 +1,4 @@
-export class CreateRpaDto {}
+export class CreateRpaDto {
+  flowname: string;
+  business: string;
+}
