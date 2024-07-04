@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Rpa {
+export class Flowactive {
   @PrimaryGeneratedColumn()
   id: number;
 

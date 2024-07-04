@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRpaDto } from './dto/create-rpa.dto';
 import { UpdateRpaDto } from './dto/update-rpa.dto';
-import { Rpa } from './entities/rpa.entity';
+import { Flowactive } from './entities/rpa.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class RpaService {
   constructor(
-    @InjectRepository(Rpa)
-    private rpaRepository: Repository<Rpa>,
+    @InjectRepository(Flowactive)
+    private rpaRepository: Repository<Flowactive>,
   ) {}
 
   async create(createRpaDto: CreateRpaDto) {
