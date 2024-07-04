@@ -1,8 +1,11 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Observable } from 'rxjs';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  constructor(private readonly configService: ConfigService) {}
+
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
@@ -16,9 +19,6 @@ export class AuthGuard implements CanActivate {
 
     const token = authHeader.split(' ')[1];
 
-    return token ==
-      'iyqgxrdC6tDgmt5SPYpEIFAo9BbXSaeM918i8f03fORoOcyQhDiTVE8jd46YvJT1'
-      ? true
-      : false;
+    return token == this.configService.get<string>('TOKEN') ? true : false;
   }
 }
