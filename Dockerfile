@@ -1,10 +1,17 @@
-# Base image
-FROM node:18
+# Use the official Windows Node.js base image
+FROM mcr.microsoft.com/windows/nanoserver:1809 AS base
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS build
+
+# Install Node.js
+RUN powershell -Command \
+    Invoke-WebRequest -Uri https://nodejs.org/dist/v18.0.0/node-v18.0.0-x64.msi -OutFile nodejs.msi ; \
+    Start-Process msiexec.exe -ArgumentList '/i', 'nodejs.msi', '/quiet', '/norestart' -NoNewWindow -Wait ; \
+    Remove-Item -Force nodejs.msi
 
 # Create app directory
 WORKDIR /usr/src/app
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# Copy application dependency manifest files to the container image.
 COPY package*.json ./
 
 # Install app dependencies
