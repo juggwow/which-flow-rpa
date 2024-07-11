@@ -4,6 +4,6 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  await app.listen(7890, '0.0.0.0');
+  await app.listen(80, '0.0.0.0');
 }
 bootstrap();
