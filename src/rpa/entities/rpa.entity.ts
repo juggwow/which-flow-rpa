@@ -9,7 +9,7 @@ export class Flowactive {
   @Column()
   flowname: string;
 
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date: Date;
 
   @Column()
