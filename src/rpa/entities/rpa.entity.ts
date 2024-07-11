@@ -9,7 +9,7 @@ export class Flowactive {
   @Column()
   flowname: string;
 
-  @Column({ default: new Date() })
+  @Column()
   date: Date;
 
   @Column()
