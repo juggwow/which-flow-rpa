@@ -16,7 +16,7 @@ export class RpaService {
     const res = this.rpaRepository.save({
       flowname: createRpaDto.flowname,
       business: createRpaDto.business,
-      date: new Date(),
+      date: createRpaDto.date||new Date(),
     });
     return res;
   }
